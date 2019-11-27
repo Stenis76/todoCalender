@@ -1,0 +1,27 @@
+/* ************ Kalender ********** */
+.calendar {
+  background-color: dodgerblue;
+  width: 70%;
+  
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  list-style: none;  
+}
+.calendar-weekdays {
+  background-color: firebrick;
+  height: 10%;
+  justify-items: center;
+  align-items: center;
+}
+
+.calendar-days {
+  background-color: grey;
+  height: 90%;
+  
+}
+
+.calendar-days li{
+  padding: 0.5rem;
+}
