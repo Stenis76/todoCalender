@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: monospace, arial;
+  height: 100vh;
+}
+
+.main-header {
+  background-color: #bada55;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:10%
+}
+
+.main-header h1 {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  height: 90%
+}
+
+/* ************ ToDo ********** */
+.todo {
+  background-color: #d1c;
+  width: 30%;
+}
+.date-time-container {
+  border-bottom: 1px solid black;
+  padding: 1rem;
+}
+
+.date-time-container h2{
+  text-align: center;
+}
+
+.date-time-container > div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.todo-list-container {
+  padding: 1rem;
+  background-color: lavender;
+
+}
+
+.todo-list {
+ list-style: none;
+ margin-top: 1rem;
+}
+
+.todo-list li {
+  border-bottom: 1px solid black;
+  margin-top: 0.3rem;
+}
+
+.add-todo-container {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.add-todo-container input{
+  width: 85%;
+  padding: 0.3rem;
+}
+
+.add-todo-container button{
+  width: 15%
+}
+
+
+/* ************ Kalender ********** */
+.calendar {
+  background-color: dodgerblue;
+  width: 70%;
+  
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  list-style: none;  
+}
+.calendar-weekdays {
+  background-color: firebrick;
+  height: 10%;
+  justify-items: center;
+  align-items: center;
+}
+
+.calendar-days {
+  background-color: grey;
+  height: 90%;
+  
+}
+
+.calendar-days li{
+  padding: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .calendar {
+    display: none;
+  }
+  .todo {
+    width: 100%;
+  }
+}
