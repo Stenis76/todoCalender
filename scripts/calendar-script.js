@@ -1,0 +1,66 @@
+const calenderDaysElement = document.querySelector(".calendar-days");
+
+async function init() {
+  const daysArray = await getMonth(2019, 12);
+  let startDay = daysArray[0];
+  let startDate = Number(startDay["dag i vecka"]);
+
+  let i = 1;
+  while (i < startDate) {
+    const liElement = createListElement();
+    calenderDaysElement.appendChild(liElement);
+    i++;
+  }
+
+  for (let i = 0; i < daysArray.length; i++) {
+    const day = daysArray[i];
+    const liElement = createListElement(day);
+    calenderDaysElement.appendChild(liElement);
+  }
+
+  let lastDay = daysArray[daysArray.length - 1];
+  let lastDate = Number(lastDay["dag i vecka"]);
+  let numberOfDaysToFill = 7 - lastDate;
+  while (numberOfDaysToFill) {
+    const liElement = createListElement();
+    calenderDaysElement.appendChild(liElement);
+    numberOfDaysToFill--;
+  }
+}
+
+function createListElement(day) {
+  const liElement = document.createElement("li");
+
+  if (day) {
+    // day.datum = 2019-11-27 String
+    const dateString = day.datum;
+    const dateArray = dateString.split("-");
+    const date = dateArray[2];
+    const dateNumber = Number(date);
+
+    liElement.innerText = dateNumber;
+
+    if (day["röd dag"] === "Ja") {
+      liElement.style.color = "red";
+      liElement.style.fontWeight = "bold";
+    }
+  } else {
+    liElement.style.backgroundColor = "#dadada";
+  }
+  return liElement;
+}
+
+async function getMonth(year, month) {
+  try {
+    const respons = await fetch(
+      "https://api.dryg.net/dagar/v2.1/" + year + "/" + month
+    );
+    const data = await respons.json();
+    return data.dagar;
+  } catch (error) {
+    console.error("GetMonth Failed to Fetch days", error);
+    return [];
+  }
+}
+
+init();
