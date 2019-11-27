@@ -1,0 +1,48 @@
+/* ************ ToDo ********** */
+.todo {
+  background-color: #d1c;
+  width: 30%;
+}
+.date-time-container {
+  border-bottom: 1px solid black;
+  padding: 1rem;
+}
+
+.date-time-container h2{
+  text-align: center;
+}
+
+.date-time-container > div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.todo-list-container {
+  padding: 1rem;
+  background-color: lavender;
+
+}
+
+.todo-list {
+ list-style: none;
+ margin-top: 1rem;
+}
+
+.todo-list li {
+  border-bottom: 1px solid black;
+  margin-top: 0.3rem;
+}
+
+.add-todo-container {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.add-todo-container input{
+  width: 85%;
+  padding: 0.3rem;
+}
+
+.add-todo-container button{
+  width: 15%
+}
