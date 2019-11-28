@@ -5,19 +5,22 @@ async function init() {
   let startDay = daysArray[0];
   let startDate = Number(startDay["dag i vecka"]);
 
-  let i = 1;
+  //Starting on 1 to get the start date correct with the days of the week, creates greyd days of the previous month (if there are any)
+  let i = 1; 
   while (i < startDate) {
     const liElement = createListElement();
     calenderDaysElement.appendChild(liElement);
     i++;
   }
 
+  // Creates the days of the month
   for (let i = 0; i < daysArray.length; i++) {
     const day = daysArray[i];
     const liElement = createListElement(day);
     calenderDaysElement.appendChild(liElement);
   }
 
+  // Creates the days of the next month and fills them,
   let lastDay = daysArray[daysArray.length - 1];
   let lastDate = Number(lastDay["dag i vecka"]);
   let numberOfDaysToFill = 7 - lastDate;
@@ -32,7 +35,7 @@ function createListElement(day) {
   const liElement = document.createElement("li");
 
   if (day) {
-    // day.datum = 2019-11-27 String
+    // day.datum = 2019-11-27 String to Array to number
     const dateString = day.datum;
     const dateArray = dateString.split("-");
     const date = dateArray[2];
