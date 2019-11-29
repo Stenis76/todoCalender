@@ -2,7 +2,7 @@ const todoListElement = document.querySelector(".todo-list");
 const todoInputElement = document.querySelector(".add-todo-input");
 const todoFormElement = document.querySelector(".add-todo-container");
 
-const todos = [];
+let todos = [];
 
 todoFormElement.addEventListener("submit", handleSubmit);
 
@@ -15,10 +15,31 @@ function handleSubmit(e) {
   }
 }
 
-function addTodo(todo) {
-  todos.push(todo);
+function addTodo(todoToAdd) {
+  todos.push(todoToAdd);
+  renderTodos();
+}
 
-  const liElement = document.createElement("li");
-  liElement.innerText = todo;
-  todoListElement.appendChild(liElement);
+function removeTodo(todoToRemove) {
+  todos = todos.filter(todo => todo !== todoToRemove);
+  renderTodos();
+}
+
+function renderTodos() {
+  // reset ul list
+  todoListElement.innerHTML = "";
+
+  todos.forEach(todo => {
+    const liElement = document.createElement("li");
+    const textElement = document.createElement("span");
+    textElement.innerText = todo;
+    liElement.appendChild(textElement);
+
+    const button = document.createElement("button");
+    button.innerText = "X";
+    liElement.appendChild(button);
+    button.addEventListener("click", () => removeTodo(todo));
+
+    todoListElement.appendChild(liElement);
+  });
 }
