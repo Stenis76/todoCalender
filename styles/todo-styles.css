@@ -29,6 +29,8 @@
 }
 
 .todo-list li {
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid black;
   margin-top: 0.3rem;
 }
