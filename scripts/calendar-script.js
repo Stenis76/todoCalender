@@ -1,12 +1,12 @@
 const calenderDaysElement = document.querySelector(".calendar-days");
 
 async function init() {
-  const daysArray = await getMonth(2019, 12);
+  const daysArray = await getMonth(2019, 11);
   let startDay = daysArray[0];
   let startDate = Number(startDay["dag i vecka"]);
 
   //Starting on 1 to get the start date correct with the days of the week, creates greyd days of the previous month (if there are any)
-  let i = 1; 
+  let i = 1;
   while (i < startDate) {
     const liElement = createListElement();
     calenderDaysElement.appendChild(liElement);
@@ -41,11 +41,26 @@ function createListElement(day) {
     const date = dateArray[2];
     const dateNumber = Number(date);
 
-    liElement.innerText = dateNumber;
+    const dateDiv = document.createElement("div");
+    dateDiv.innerText = dateNumber;
+    liElement.appendChild(dateDiv);
+
 
     if (day["röd dag"] === "Ja") {
       liElement.style.color = "red";
       liElement.style.fontWeight = "bold";
+
+      if (day.helgdag) {
+        const helgdag = day.helgdag;
+        const helgdagDiv = document.createElement("div");
+        helgdagDiv.innerText = helgdag;
+        liElement.appendChild(helgdagDiv);
+      }
+    } else if (day.helgdagsafton || day.helgdag) {
+      const helgdag = day.helgdagsafton || day.helgdag;
+      const helgdagDiv = document.createElement("div");
+      helgdagDiv.innerText = helgdag;
+      liElement.appendChild(helgdagDiv);
     }
   } else {
     liElement.style.backgroundColor = "#dadada";

@@ -10,6 +10,7 @@
     <script defer src="./scripts/main-script.js"></script>
     <script defer src="./scripts/todo-script.js"></script>
     <script defer src="./scripts/calendar-script.js"></script>
+    <script defer src="./scripts/greet-script.js"></script>
     <title>Document</title>
   </head>
 
@@ -22,21 +23,20 @@
 
     <section class="todo">
       <div class="date-time-container">
-        <h2>Söndag</h2>
+        <h2 id=day-of-the-week>Söndag</h2>
         <div>
-         <div>klockan</div>
-          <div>datum</div>
+         <div class="time">klockan</div>
+          <div class="todays-date">datum</div>
         </div>
         
       </div>
       <div class="todo-list-container">
         <h2>Att Göra Lista</h2>
         <ul class="todo-list">
-          <li>städa</li>
-          <li>tvätta</li>
+
         </ul>
         <form class="add-todo-container">
-          <input type="text" name="" id="" />
+          <input class="add-todo-input" type="text" name="" id="" placeholder="Lägg till todo" />
           <button type="submit">+</button>
         </form>
       </div>
