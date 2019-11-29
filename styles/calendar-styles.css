@@ -23,8 +23,16 @@
   border-top: 2px solid black;
 }
 
-.calendar-days li{
+.calendar-days li {
   padding: 0.5rem;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calendar-days li:hover {
+  background-color: rgba(246, 201, 201, 0.384);
+  transition: background-color .3s;
 }
