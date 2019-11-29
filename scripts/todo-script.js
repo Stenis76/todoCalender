@@ -15,8 +15,8 @@ function handleSubmit(e) {
   }
 }
 
-function addTodo(todo) {
-  todos.push(todo);
+function addTodo(todoToAdd) {
+  todos.push(todoToAdd);
   renderTodos();
 }
 
@@ -39,7 +39,7 @@ function renderTodos() {
     button.innerText = "X";
     liElement.appendChild(button);
     button.addEventListener("click", () => removeTodo(todo));
-    
+
     todoListElement.appendChild(liElement);
   });
 }
