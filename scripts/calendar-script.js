@@ -1,9 +1,12 @@
 const calenderDaysElement = document.querySelector(".calendar-days");
 
 async function init() {
-  const daysArray = await getMonth(2019, 11);
+  let month = getPresentMonth() 
+  const daysArray = await getMonth(2019, month);
   let startDay = daysArray[0];
   let startDate = Number(startDay["dag i vecka"]);
+  createCalendarHead(startDay)
+  
 
   //Starting on 1 to get the start date correct with the days of the week, creates greyd days of the previous month (if there are any)
   let i = 1;
@@ -79,6 +82,59 @@ async function getMonth(year, month) {
     console.error("GetMonth Failed to Fetch days", error);
     return [];
   }
+}
+
+function createCalendarHead(startDay) {
+  let dayString = startDay.datum
+  let dayArray = dayString.split("-")
+  let month = dayArray[1]
+  let monthNumber = Number(month)
+  
+  switch (monthNumber) {
+    case 1:
+        month = "januari";
+        break;
+    case 2:
+        month = "februari";
+        break;
+    case 3:
+        month = "mars";
+        break;
+    case 4:
+        month = "april";
+        break;
+    case 5:
+        month = "maj";
+        break;
+    case 6:
+        month = "juni";
+        break;
+    case 7:
+        month = "juli";
+        break;
+    case 8:
+        month = "augusti";
+        break;
+    case 9:
+        month = "september"
+        break;
+    case 10:
+        month = "oktober"
+        break;
+    case 11:
+        month = "november"
+        break;
+    case 12:
+        month = "december"
+        break;
+      }
+      document.querySelector(".calendar-title").innerHTML = "Härliga " + month;
+}
+
+function getPresentMonth() {
+  const dayAndTime = new Date()
+  let month = dayAndTime.getMonth() + 1
+  return month
 }
 
 init();
