@@ -27,7 +27,13 @@ function addTodo(todoToAdd) {
   if (!todoLists[selectedDate]) {
     todoLists[selectedDate] = [];
   }
-  todoLists[selectedDate].push(todoToAdd);
+
+  const todo = {
+    id : new Date().getTime(),
+    todoText: todoToAdd
+  }
+
+  todoLists[selectedDate].push(todo);
   renderTodos(todoLists[selectedDate]);
 
   localStorage.setItem("todoLists", JSON.stringify(todoLists));
@@ -35,7 +41,7 @@ function addTodo(todoToAdd) {
 
 // bugg, filter tar bort likadana todos
 function removeTodo(todoToRemove) {
-  todoLists[selectedDate] = todoLists[selectedDate].filter(todo => todo !== todoToRemove);
+  todoLists[selectedDate] = todoLists[selectedDate].filter(todo => todo.id !== todoToRemove.id);
   renderTodos(todoLists[selectedDate]);
 
   localStorage.setItem("todoLists", JSON.stringify(todoLists));
@@ -49,7 +55,7 @@ function renderTodos(todosToRender) {
   todosToRender.forEach(todo => {
     const liElement = document.createElement("li");
     const textElement = document.createElement("span");
-    textElement.innerText = todo;
+    textElement.innerText = todo.todoText;
     liElement.appendChild(textElement);
 
     const button = document.createElement("button");
