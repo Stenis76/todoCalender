@@ -7,13 +7,10 @@ const year =  date.getFullYear();
 const month = date.getMonth() + 1;
 const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate() ;
 
-
 let selectedDate = year + "-" + month + "-" + day;
+let todoLists = JSON.parse(localStorage.getItem("todoLists")) || {};
 
-
-let todoLists = {
- 
-}
+if(todoLists[selectedDate]) renderTodos(todoLists[selectedDate]);
 
 todoFormElement.addEventListener("submit", handleSubmit);
 
@@ -32,18 +29,19 @@ function addTodo(todoToAdd) {
   }
   todoLists[selectedDate].push(todoToAdd);
   renderTodos(todoLists[selectedDate]);
+
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
+// bugg, filter tar bort likadana todos
 function removeTodo(todoToRemove) {
   todoLists[selectedDate] = todoLists[selectedDate].filter(todo => todo !== todoToRemove);
   renderTodos(todoLists[selectedDate]);
+
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
 function renderTodos(todosToRender) {
-  
-  console.log(todoLists);
-  
-  console.log(todosToRender);
   
   // reset ul list
   todoListElement.innerHTML = "";
@@ -70,8 +68,5 @@ function handleDayClick(date, liElement) {
     todoLists[selectedDate] = [];
   }
   renderTodos(todoLists[selectedDate])
-
-
-  
 }
 
