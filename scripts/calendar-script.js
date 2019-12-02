@@ -10,8 +10,7 @@ function init() {
   document.getElementById("next-month").addEventListener("click", function() {
     increaseMonth(date);
   });
-  document
-    .getElementById("previous-month").addEventListener("click", function() {
+  document.getElementById("previous-month").addEventListener("click", function() {
       decreaseMonth(date);
   });
 }
