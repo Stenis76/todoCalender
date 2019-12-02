@@ -1,13 +1,27 @@
 const calenderDaysElement = document.querySelector(".calendar-days");
 
-async function init() {
-  let month = getPresentMonth() 
-  let year = getPresentYear()
-  const daysArray = await getMonth(year, month);
+function init() {
+  const date = {
+    month: getPresentMonth(),
+    year: getPresentYear()
+  };
+  createCalendar(date);
+
+  document.getElementById("next-month").addEventListener("click", function() {
+    increaseMonth(date);
+  });
+  document
+    .getElementById("previous-month").addEventListener("click", function() {
+      decreaseMonth(date);
+  });
+}
+
+async function createCalendar(date) {
+  calenderDaysElement.innerHTML = "";
+  createCalendarHead(date);
+  const daysArray = await getMonth(date);
   let startDay = daysArray[0];
   let startDate = Number(startDay["dag i vecka"]);
-  createCalendarHead(year, month)
-  
 
   //Starting on 1 to get the start date correct with the days of the week, creates greyd days of the previous month (if there are any)
   let i = 1;
@@ -49,7 +63,6 @@ function createListElement(day) {
     dateDiv.innerText = dateNumber;
     liElement.appendChild(dateDiv);
 
-
     if (day["röd dag"] === "Ja") {
       liElement.style.color = "red";
       liElement.style.fontWeight = "bold";
@@ -72,10 +85,10 @@ function createListElement(day) {
   return liElement;
 }
 
-async function getMonth(year, month) {
+async function getMonth(date) {
   try {
     const respons = await fetch(
-      "https://api.dryg.net/dagar/v2.1/" + year + "/" + month
+      "https://api.dryg.net/dagar/v2.1/" + date.year + "/" + date.month
     );
     const data = await respons.json();
     return data.dagar;
@@ -85,58 +98,76 @@ async function getMonth(year, month) {
   }
 }
 
-function createCalendarHead(year, month) {
-
-  switch (month) {
+function createCalendarHead(date) {
+  let monthName = date.month;
+  switch (monthName) {
     case 1:
-        month = "januari";
-        break;
+      monthName = "januari";
+      break;
     case 2:
-        month = "februari";
-        break;
+      monthName = "februari";
+      break;
     case 3:
-        month = "mars";
-        break;
+      monthName = "mars";
+      break;
     case 4:
-        month = "april";
-        break;
+      monthName = "april";
+      break;
     case 5:
-        month = "maj";
-        break;
+      monthName = "maj";
+      break;
     case 6:
-        month = "juni";
-        break;
+      monthName = "juni";
+      break;
     case 7:
-        month = "juli";
-        break;
+      monthName = "juli";
+      break;
     case 8:
-        month = "augusti";
-        break;
+      monthName = "augusti";
+      break;
     case 9:
-        month = "september"
-        break;
+      monthName = "september";
+      break;
     case 10:
-        month = "oktober"
-        break;
+      monthName = "oktober";
+      break;
     case 11:
-        month = "november"
-        break;
+      monthName = "november";
+      break;
     case 12:
-        month = "december"
-        break;
-      }
-      document.querySelector(".calendar-title").innerHTML = "Härliga " + month + " " + year;
+      monthName = "december";
+      break;
+  }
+  document.querySelector(".calendar-title").innerHTML =
+    "Härliga " + monthName + " " + date.year;
 }
 
 function getPresentMonth() {
-  const dayAndTime = new Date()
-  let month = dayAndTime.getMonth() + 1
-  return month
+  const dayAndTime = new Date();
+  let month = dayAndTime.getMonth() + 1;
+  return month;
 }
-function getPresentYear(){
-  const dayAndTime = new Date()
-  let year = dayAndTime.getFullYear()
-  return year
+function getPresentYear() {
+  const dayAndTime = new Date();
+  let year = dayAndTime.getFullYear();
+  return year;
 }
 
+function increaseMonth(date) {
+  date.month++;
+  if (date.month > 12) {
+    date.year++;
+    date.month = 1;
+  }
+  createCalendar(date);
+}
+
+function decreaseMonth(date) {
+  date.month--;
+  if (date.month < 1) {
+    date.year--;
+    date.month = 12;
+  }
+  createCalendar(date);
+}
 init();
