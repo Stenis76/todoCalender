@@ -7,13 +7,10 @@ const year =  date.getFullYear();
 const month = date.getMonth() + 1;
 const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate() ;
 
-
 let selectedDate = year + "-" + month + "-" + day;
+let todoLists = JSON.parse(localStorage.getItem("todoLists")) || {};
 
-
-let todoLists = {
- 
-}
+if(todoLists[selectedDate]) renderTodos(todoLists[selectedDate]);
 
 todoFormElement.addEventListener("submit", handleSubmit);
 
@@ -30,20 +27,27 @@ function addTodo(todoToAdd) {
   if (!todoLists[selectedDate]) {
     todoLists[selectedDate] = [];
   }
-  todoLists[selectedDate].push(todoToAdd);
+
+  const todo = {
+    id : new Date().getTime(),
+    todoText: todoToAdd
+  }
+
+  todoLists[selectedDate].push(todo);
   renderTodos(todoLists[selectedDate]);
+
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
+// bugg, filter tar bort likadana todos
 function removeTodo(todoToRemove) {
-  todoLists[selectedDate] = todoLists[selectedDate].filter(todo => todo !== todoToRemove);
+  todoLists[selectedDate] = todoLists[selectedDate].filter(todo => todo.id !== todoToRemove.id);
   renderTodos(todoLists[selectedDate]);
+
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
 function renderTodos(todosToRender) {
-  
-  console.log(todoLists);
-  
-  console.log(todosToRender);
   
   // reset ul list
   todoListElement.innerHTML = "";
@@ -51,7 +55,7 @@ function renderTodos(todosToRender) {
   todosToRender.forEach(todo => {
     const liElement = document.createElement("li");
     const textElement = document.createElement("span");
-    textElement.innerText = todo;
+    textElement.innerText = todo.todoText;
     liElement.appendChild(textElement);
 
     const button = document.createElement("button");
@@ -70,8 +74,5 @@ function handleDayClick(date, liElement) {
     todoLists[selectedDate] = [];
   }
   renderTodos(todoLists[selectedDate])
-
-
-  
 }
 
