@@ -22,6 +22,10 @@ async function init() {
     const day = daysArray[i];
     const liElement = createListElement(day);
     calenderDaysElement.appendChild(liElement);
+
+    liElement.addEventListener("click", () => {
+      handleDayClick(day.datum, liElement)
+    })
   }
 
   // Creates the days of the next month and fills them,
@@ -37,7 +41,7 @@ async function init() {
 
 function createListElement(day) {
   const liElement = document.createElement("li");
-
+  
   if (day) {
     // day.datum = 2019-11-27 String to Array to number
     const dateString = day.datum;
