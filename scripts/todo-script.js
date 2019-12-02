@@ -2,7 +2,15 @@ const todoListElement = document.querySelector(".todo-list");
 const todoInputElement = document.querySelector(".add-todo-input");
 const todoFormElement = document.querySelector(".add-todo-container");
 
-let todos = [];
+const date = new Date();
+const year =  date.getFullYear();
+const month = date.getMonth() + 1;
+const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate() ;
+
+let selectedDate = year + "-" + month + "-" + day;
+let todoLists = JSON.parse(localStorage.getItem("todoLists")) || {};
+
+if(todoLists[selectedDate]) renderTodos(todoLists[selectedDate]);
 
 todoFormElement.addEventListener("submit", handleSubmit);
 
@@ -16,23 +24,38 @@ function handleSubmit(e) {
 }
 
 function addTodo(todoToAdd) {
-  todos.push(todoToAdd);
-  renderTodos();
+  if (!todoLists[selectedDate]) {
+    todoLists[selectedDate] = [];
+  }
+
+  const todo = {
+    id : new Date().getTime(),
+    todoText: todoToAdd
+  }
+
+  todoLists[selectedDate].push(todo);
+  renderTodos(todoLists[selectedDate]);
+
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
+// bugg, filter tar bort likadana todos
 function removeTodo(todoToRemove) {
-  todos = todos.filter(todo => todo !== todoToRemove);
-  renderTodos();
+  todoLists[selectedDate] = todoLists[selectedDate].filter(todo => todo.id !== todoToRemove.id);
+  renderTodos(todoLists[selectedDate]);
+
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
-function renderTodos() {
+function renderTodos(todosToRender) {
+  
   // reset ul list
   todoListElement.innerHTML = "";
 
-  todos.forEach(todo => {
+  todosToRender.forEach(todo => {
     const liElement = document.createElement("li");
     const textElement = document.createElement("span");
-    textElement.innerText = todo;
+    textElement.innerText = todo.todoText;
     liElement.appendChild(textElement);
 
     const button = document.createElement("button");
@@ -43,3 +66,13 @@ function renderTodos() {
     todoListElement.appendChild(liElement);
   });
 }
+
+function handleDayClick(date, liElement) {
+  liElement.classList.toggle("black")
+  selectedDate = date;
+  if (!todoLists[selectedDate]) {
+    todoLists[selectedDate] = [];
+  }
+  renderTodos(todoLists[selectedDate])
+}
+
