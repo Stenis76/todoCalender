@@ -31,8 +31,26 @@
 .todo-list li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid black;
   margin-top: 0.3rem;
+  padding: .5rem 0;
+}
+
+.todo-list li .done {
+  text-decoration: line-through;
+}
+
+.todo-list li label {
+  width: 80%;
+}
+
+.todo-list li > input {
+  width: 10%;
+}
+
+.todo-list li > div {
+  width: 10%;
 }
 
 .add-todo-container {
@@ -48,3 +66,5 @@
 .add-todo-container button{
   width: 15%
 }
+
+
