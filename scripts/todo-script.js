@@ -13,6 +13,7 @@ let todoLists = JSON.parse(localStorage.getItem("todoLists")) || {};
 if(todoLists[selectedDate]) renderTodos(todoLists[selectedDate]);
 
 todoFormElement.addEventListener("submit", handleSubmit);
+todoListElement.addEventListener("click", toggleDone);
 
 function handleSubmit(e) {
   e.preventDefault(); // prevent refresh of page
@@ -48,27 +49,58 @@ function removeTodo(todoToRemove) {
   localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
+function editTodo(todo) {
+  // TODO
+}
+
+function toggleDone(e) {
+  
+  if(!e.target.matches("input")) return;
+
+  const inputElement = e.target;
+  const index = inputElement.dataset.index;
+
+  const selectedList = todoLists[selectedDate];
+
+  selectedList[index].done = !selectedList[index].done;
+
+  renderTodos(todoLists[selectedDate]);
+
+  localStorage.setItem("todoLists", JSON.stringify(todoLists));
+}
+
 function renderTodos(todosToRender) {
   
   // reset ul list
   todoListElement.innerHTML = "";
 
-  todosToRender.forEach(todo => {
+  todosToRender.forEach((todo, i) => {
     const liElement = document.createElement("li");
     const labelElement = document.createElement("label");
-    labelElement.htmlFor = `todo-${todo.id}`
+    labelElement.htmlFor = `todo-${i}`
     const inputElement = document.createElement("input");
     inputElement.type = "checkbox"
     inputElement.checked = todo.done ? "checked" : "";
-    inputElement.id = `todo-${todo.id}`
+    inputElement.id = `todo-${i}`
+    inputElement.dataset.index = i;
+
     labelElement.innerText = todo.todoText;
+    todo.done ? labelElement.classList.add("done") : labelElement.classList.remove("done");
     liElement.appendChild(inputElement);
     liElement.appendChild(labelElement);
 
-    const button = document.createElement("button");
-    button.innerText = "X";
-    liElement.appendChild(button);
-    button.addEventListener("click", () => removeTodo(todo));
+    const buttonContainer = document.createElement("div");
+    liElement.appendChild(buttonContainer);
+
+    const editButton = document.createElement("button");
+    editButton.innerText = "🖌";
+    editButton.addEventListener("click", () => editTodo(todo));
+    buttonContainer.appendChild(editButton);
+
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "❌";
+    removeButton.addEventListener("click", () => removeTodo(todo));
+    buttonContainer.appendChild(removeButton);
 
     todoListElement.appendChild(liElement);
   });
