@@ -30,7 +30,8 @@ function addTodo(todoToAdd) {
 
   const todo = {
     id : new Date().getTime(),
-    todoText: todoToAdd
+    todoText: todoToAdd,
+    done: false
   }
 
   todoLists[selectedDate].push(todo);
@@ -54,9 +55,15 @@ function renderTodos(todosToRender) {
 
   todosToRender.forEach(todo => {
     const liElement = document.createElement("li");
-    const textElement = document.createElement("span");
-    textElement.innerText = todo.todoText;
-    liElement.appendChild(textElement);
+    const labelElement = document.createElement("label");
+    labelElement.htmlFor = `todo-${todo.id}`
+    const inputElement = document.createElement("input");
+    inputElement.type = "checkbox"
+    inputElement.checked = todo.done ? "checked" : "";
+    inputElement.id = `todo-${todo.id}`
+    labelElement.innerText = todo.todoText;
+    liElement.appendChild(inputElement);
+    liElement.appendChild(labelElement);
 
     const button = document.createElement("button");
     button.innerText = "X";

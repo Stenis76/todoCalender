@@ -48,3 +48,16 @@
 .add-todo-container button{
   width: 15%
 }
+
+.todo-list input {
+  display: none;
+}
+
+.todo-list input + label::before {
+  content: "⬜";
+  margin-right: .5rem;
+}
+
+.todo-list input:checked + label::before {
+  content: "🧙";
+}
