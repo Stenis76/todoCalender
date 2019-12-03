@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://kit.fontawesome.com/0337e78d8a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/main-styles.css" />
     <link rel="stylesheet" href="./styles/todo-styles.css" />
     <link rel="stylesheet" href="./styles/calendar-styles.css" />
+    <link rel="stylesheet" href="./styles/modal-styles.css" />
     <script defer src="./scripts/main-script.js"></script>
     <script defer src="./scripts/todo-script.js"></script>
     <script defer src="./scripts/calendar-script.js"></script>
     <script defer src="./scripts/greet-script.js"></script>
+    <script defer src="./scripts/modal-script.js"></script>
     <title>Document</title>
   </head>
 
@@ -19,48 +22,62 @@
       <h1>Fånga Dagen din jävel!!!</h1>
     </header>
 
-  <main>
-
-    <section class="todo">
-      <div class="date-time-container">
-        <h2 id=day-of-the-week>Söndag</h2>
-        <div>
-         <div class="time">klockan</div>
-          <div class="todays-date">datum</div>
+    <main>
+      <section class="todo">
+        <div class="date-time-container">
+          <h2 id="day-of-the-week">Söndag</h2>
+          <div>
+            <div class="time">klockan</div>
+            <div class="todays-date">datum</div>
+          </div>
         </div>
-        
-      </div>
-      <div class="todo-list-container">
-        <h2>Att Göra Lista</h2>
-        <ul class="todo-list">
-
+        <div class="todo-list-container">
+          <h2>Att Göra Lista</h2>
+          <ul class="todo-list"></ul>
+          <form class="add-todo-container">
+            <input
+              class="add-todo-input"
+              type="text"
+              name=""
+              id=""
+              placeholder="Lägg till todo"
+            />
+            <button type="submit">+</button>
+          </form>
+        </div>
+      </section>
+      <section class="calendar">
+        <header>
+          <button id="previous-month">föregånde månad</button>
+          <div class="calendar-title"></div>
+          <button id="next-month">nästa månad</button>
+        </header>
+        <ul class="calendar-weekdays calendar-grid">
+          <li>Måndag</li>
+          <li>Tisdag</li>
+          <li>Onsdag</li>
+          <li>Torsdag</li>
+          <li>Fredag</li>
+          <li>Lördag</li>
+          <li>Söndag</li>
         </ul>
-        <form class="add-todo-container">
-          <input class="add-todo-input" type="text" name="" id="" placeholder="Lägg till todo" />
-          <button type="submit">+</button>
-        </form>
+        <ul class="calendar-days calendar-grid"></ul>
+      </section>
+
+      <!-- The Modal -->
+      <div id="modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <form action="">
+            <label for="editTodo">Edit todo:</label>
+            <input type="text" id="editTodo" />
+            <button type="submit">
+                <i class="fas fa-check-circle"></i>
+            </button>
+          </form>
+          <span class="close">✖</span>
+        </div>
       </div>
-    </section>
-    <section class="calendar">
-      <header>
-        <button id="previous-month">föregånde månad</button>
-        <div class="calendar-title"></div>
-        <button id="next-month">nästa månad</button>
-      </header>
-      <ul class="calendar-weekdays calendar-grid">
-        <li>Måndag</li>
-        <li>Tisdag</li>
-        <li>Onsdag</li>
-        <li>Torsdag</li>
-        <li>Fredag</li>
-        <li>Lördag</li>
-        <li>Söndag</li>
-      </ul>
-      <ul class="calendar-days calendar-grid">
-       
-      </ul>
-    </section>
-  </main>
+    </main>
   </body>
-  </html>
-  
+</html>
