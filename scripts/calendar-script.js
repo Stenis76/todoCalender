@@ -1,18 +1,20 @@
 const calenderDaysElement = document.querySelector(".calendar-days");
 
+const date = {
+  month: getPresentMonth(),
+  year: getPresentYear()
+};
 function init() {
-  const date = {
-    month: getPresentMonth(),
-    year: getPresentYear()
-  };
   createCalendar(date);
 
   document.getElementById("next-month").addEventListener("click", function() {
     increaseMonth(date);
   });
-  document.getElementById("previous-month").addEventListener("click", function() {
+  document
+    .getElementById("previous-month")
+    .addEventListener("click", function() {
       decreaseMonth(date);
-  });
+    });
 }
 
 async function createCalendar(date) {
@@ -21,7 +23,9 @@ async function createCalendar(date) {
   const daysArray = await getMonth(date);
   let startDay = daysArray[0];
   let startDate = Number(startDay["dag i vecka"]);
-
+  renderCalendar(startDate, daysArray);
+}
+function renderCalendar(startDate, daysArray) {
   //Starting on 1 to get the start date correct with the days of the week, creates greyd days of the previous month (if there are any)
   let i = 1;
   while (i < startDate) {
@@ -37,8 +41,8 @@ async function createCalendar(date) {
     calenderDaysElement.appendChild(liElement);
 
     liElement.addEventListener("click", () => {
-      handleDayClick(day.datum, liElement)
-    })
+      handleDayClick(day.datum, liElement);
+    });
   }
 
   // Creates the days of the next month and fills them,
@@ -54,7 +58,7 @@ async function createCalendar(date) {
 
 function createListElement(day) {
   const liElement = document.createElement("li");
-  
+
   if (day) {
     // day.datum = 2019-11-27 String to Array to number
     const dateString = day.datum;
@@ -65,6 +69,14 @@ function createListElement(day) {
     const dateDiv = document.createElement("div");
     dateDiv.innerText = dateNumber;
     liElement.appendChild(dateDiv);
+
+    if (todoLists[day.datum] && todoLists[day.datum].length > 0) {
+      const numberOfTodos = todoLists[day.datum].length;
+      const numberOfTodosElement = document.createElement("div");
+      numberOfTodosElement.classList.add("number-of-todos");
+      numberOfTodosElement.innerText = "Todos " + numberOfTodos;
+      liElement.appendChild(numberOfTodosElement);
+    }
 
     if (day["röd dag"] === "Ja") {
       liElement.style.color = "red";
