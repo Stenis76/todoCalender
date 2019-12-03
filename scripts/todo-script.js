@@ -49,8 +49,27 @@ function removeTodo(todoToRemove) {
   localStorage.setItem("todoLists", JSON.stringify(todoLists));
 }
 
-function editTodo(todo) {
-  // TODO
+function showEditModal(todo) {
+  
+  // View modal
+  modalElement.style.display = "block";
+  
+  const form = document.querySelector(".modal form");
+  const inputElement = document.querySelector(".modal input#editTodo");
+  inputElement.value = todo.todoText;
+  inputElement.focus();
+  
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const inputValue = inputElement.value;
+    if (inputValue) {
+      todo.todoText = inputValue;
+      todo.done = false;
+      localStorage.setItem("todoLists", JSON.stringify(todoLists));
+      renderTodos(todoLists[selectedDate])
+      modalElement.style.display = "none";
+    } 
+  })
 }
 
 function toggleDone(e) {
@@ -94,7 +113,7 @@ function renderTodos(todosToRender) {
 
     const editButton = document.createElement("button");
     editButton.innerText = "🖌";
-    editButton.addEventListener("click", () => editTodo(todo));
+    editButton.addEventListener("click", () => showEditModal(todo));
     buttonContainer.appendChild(editButton);
 
     const removeButton = document.createElement("button");

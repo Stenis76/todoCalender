@@ -1,0 +1,100 @@
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* The Close Button */
+.close {
+  color: rgb(75, 75, 75);
+  /* float: right; */
+  font-size: 2rem;
+  margin-left: 1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 8px;
+  right: 20px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fefefe;
+  
+  padding: 5rem 3rem;
+  border-radius: .5rem;
+  border: 1px solid #888;
+  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.424));
+  width: 40rem; /* Could be more or less, depending on screen size */
+  font-size: 1.2rem;
+
+  animation: fall-down 0.6s cubic-bezier(0.32, 0.68, 0.4, 1.2) forwards;
+
+}
+
+@keyframes fall-down {
+  from {
+    top: -200px;
+  }
+  to {
+    top: 40%;
+  }
+}
+
+
+
+.modal-content form {
+  display: flex;
+  align-items: center;
+}
+
+.modal-content form label {
+  margin-right: .5rem;
+  font-weight: bold;
+}
+
+.modal-content #editTodo {
+  padding: .6rem .4rem;
+  /* border-radius: .5rem; */
+  outline: none;
+  border: 1px solid rgb(187, 186, 186);
+  margin: 0;
+  /* border-bottom: 1px solid black; */
+  height: 100%;
+  font-size: 1.2rem;
+}
+
+ .modal-content button[type="submit"] {
+   background-color: transparent;
+   outline: none;
+   border: none;
+
+ }
+
+ .modal-content button[type="submit"] i {
+    font-size: 1.8rem; 
+    margin-left: .5rem;
+    color: green;
+    cursor: pointer;
+ }
