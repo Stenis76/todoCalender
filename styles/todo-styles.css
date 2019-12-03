@@ -1,6 +1,6 @@
 /* ************ ToDo ********** */
 .todo {
-  background-color: #d1c;
+  background-color: var(--color3);
   width: 30%;
 }
 .date-time-container {

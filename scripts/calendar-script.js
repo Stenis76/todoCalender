@@ -95,7 +95,7 @@ function createListElement(day) {
       liElement.appendChild(helgdagDiv);
     }
   } else {
-    liElement.style.backgroundColor = "#dadada";
+    liElement.classList.add("day-fill")
   }
   return liElement;
 }

@@ -1,6 +1,6 @@
 /* ************ Kalender ********** */
 .calendar {
-  background-color: dodgerblue;
+  background-color: var(--color3);
   width: 70%;
   
 }
@@ -10,29 +10,34 @@
   list-style: none;  
 }
 .calendar-weekdays {
-  background-color: firebrick;
+  background-color: var(--color2);
   height: 10%;
   justify-items: center;
   align-items: center;
 }
 
 .calendar-days {
-  background-color: white;
+  background-color: var(--color5);
   height: 90%;
-  border-left: 2px solid black;
-  border-top: 2px solid black;
+  border-left: 2px solid var(--color1);
+  border-top: 2px solid var(--color1);
 }
 
 .calendar-days li {
   padding: 0.5rem;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
+  border-right: 2px solid var(--color1);
+  border-bottom: 2px solid var(--color1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .calendar-days li:hover {
-  background-color: rgba(246, 201, 201, 0.384);
+  background-color: var(--color4);
   transition: background-color .3s;
 }
+
+.day-fill {
+  background-color: var(--color2);
+}
+
