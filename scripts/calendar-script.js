@@ -1,5 +1,8 @@
 const calenderDaysElement = document.querySelector(".calendar-days");
 
+let selectedCalendarDay;
+let daysArray = [];
+
 const date = {
   month: getPresentMonth(),
   year: getPresentYear()
@@ -15,17 +18,20 @@ function init() {
     .addEventListener("click", function() {
       decreaseMonth(date);
     });
+
+   
 }
 
 async function createCalendar(date) {
-  calenderDaysElement.innerHTML = "";
   createCalendarHead(date);
-  const daysArray = await getMonth(date);
+  daysArray = await getMonth(date);
+  renderCalendar(daysArray);
+}
+function renderCalendar() {
+  if (!daysArray.length) return;
+  calenderDaysElement.innerHTML = "";
   let startDay = daysArray[0];
   let startDate = Number(startDay["dag i vecka"]);
-  renderCalendar(startDate, daysArray);
-}
-function renderCalendar(startDate, daysArray) {
   //Starting on 1 to get the start date correct with the days of the week, creates greyd days of the previous month (if there are any)
   let i = 1;
   while (i < startDate) {
@@ -38,10 +44,20 @@ function renderCalendar(startDate, daysArray) {
   for (let i = 0; i < daysArray.length; i++) {
     const day = daysArray[i];
     const liElement = createListElement(day);
+    liElement.dataset.index = i;
+
+    if (selectedCalendarDay && selectedCalendarDay.dataset.index == i) {
+      selectedCalendarDay = liElement;
+      selectedCalendarDay.classList.add("active");
+    }
+
     calenderDaysElement.appendChild(liElement);
 
-    liElement.addEventListener("click", () => {
+    liElement.addEventListener("click", (e) => {
       handleDayClick(day.datum, liElement);
+      if (selectedCalendarDay) selectedCalendarDay.classList.remove("active");
+      selectedCalendarDay = liElement;
+      selectedCalendarDay.classList.add("active");
     });
   }
 
@@ -174,6 +190,7 @@ function increaseMonth(date) {
     date.year++;
     date.month = 1;
   }
+  selectedCalendarDay = "";
   createCalendar(date);
 }
 
@@ -183,6 +200,7 @@ function decreaseMonth(date) {
     date.year--;
     date.month = 12;
   }
+  selectedCalendarDay = "";
   createCalendar(date);
 }
 init();

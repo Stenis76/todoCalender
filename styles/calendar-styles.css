@@ -41,3 +41,7 @@
   background-color: var(--color2);
 }
 
+.active {
+  background-color: var(--color3);
+}
+

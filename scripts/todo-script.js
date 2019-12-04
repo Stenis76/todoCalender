@@ -42,7 +42,7 @@ function addTodo(todoToAdd) {
   renderTodos(todoLists[selectedDate]);
 
   localStorage.setItem("todoLists", JSON.stringify(todoLists));
-  createCalendar(date);
+  renderCalendar();
 }
 
 // bugg, filter tar bort likadana todos
@@ -53,7 +53,7 @@ function removeTodo(todoToRemove) {
   renderTodos(todoLists[selectedDate]);
 
   localStorage.setItem("todoLists", JSON.stringify(todoLists));
-  createCalendar(date);
+  renderCalendar();
 }
 
 function showEditModal(todo) {
@@ -111,19 +111,22 @@ function renderTodos(todosToRender) {
     todo.done
       ? labelElement.classList.add("done")
       : labelElement.classList.remove("done");
-    liElement.appendChild(inputElement);
+
+    const inputContainer = document.createElement("span");
+    inputContainer.appendChild(inputElement);
+    liElement.appendChild(inputContainer);
     liElement.appendChild(labelElement);
 
     const buttonContainer = document.createElement("div");
     liElement.appendChild(buttonContainer);
 
-    const editButton = document.createElement("button");
-    editButton.innerText = "🖌";
+    const editButton = document.createElement("span");
+    editButton.innerHTML = '<i class="fas fa-edit"></i>';
     editButton.addEventListener("click", () => showEditModal(todo));
     buttonContainer.appendChild(editButton);
 
-    const removeButton = document.createElement("button");
-    removeButton.innerText = "❌";
+    const removeButton = document.createElement("span");
+    removeButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
     removeButton.addEventListener("click", () => removeTodo(todo));
     buttonContainer.appendChild(removeButton);
 
