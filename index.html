@@ -10,13 +10,16 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
+    <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|Quando|Scope+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/todo-styles.css" />
     <link rel="stylesheet" href="./styles/calendar-styles.css" />
     <link rel="stylesheet" href="./styles/modal-styles.css" />
+    <link rel="stylesheet" href="./styles/greeting-styles.css">
     <link rel="stylesheet" href="./styles/main-styles.css" />
+
     <script defer src="./scripts/main-script.js"></script>
-    <script defer src="./scripts/todo-script.js"></script>
     <script defer src="./scripts/calendar-script.js"></script>
+    <script defer src="./scripts/todo-script.js"></script>
     <script defer src="./scripts/greet-script.js"></script>
     <script defer src="./scripts/modal-script.js"></script>
     <title>Document</title>
@@ -32,12 +35,12 @@
         <div class="date-time-container">
           <h2 id="day-of-the-week">Söndag</h2>
           <div>
-            <div class="time">klockan</div>
+            <!-- <div class="time">klockan</div> -->
             <div class="todays-date">datum</div>
           </div>
         </div>
         <div class="todo-list-container">
-          <h2>Att Göra Lista</h2>
+          <h2 class="todo-list-header"></h2>
           <ul class="todo-list"></ul>
           <form class="add-todo-container">
             <input

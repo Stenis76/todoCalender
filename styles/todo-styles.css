@@ -3,24 +3,14 @@
   background-color: var(--color3);
   width: 30%;
 }
-.date-time-container {
-  border-bottom: 1px solid black;
-  padding: 1rem;
-}
-
-.date-time-container h2{
-  text-align: center;
-}
-
-.date-time-container > div {
-  display: flex;
-  justify-content: space-around;
-}
 
 .todo-list-container {
+  border-radius: 5px;
+  margin: 0 1.5rem;
   padding: 1rem;
   font-size: 1.2rem;
-  background-color:var(--color5);
+  background-color: var(--color5);
+  filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671));
 }
 
 .todo-list-container h2 {
@@ -28,11 +18,12 @@
 }
 
 .todo-list {
- list-style: none;
- padding: 2rem;
+  list-style: none;
+  padding: 2rem;
 }
 
 .todo-list li {
+  position: relative;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -47,19 +38,38 @@
 
 .todo-list li .done {
   text-decoration: line-through;
+  color: rgb(128, 128, 128);
 }
 
 .todo-list li input[type="checkbox"] {
   width: 1.4rem;
   height: 1.4rem;
+  cursor: pointer;
+  margin: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance:none;
+  outline: 2px solid black;
+  box-shadow: none;
+  font-size: 1.5rem;
+}
 
+.todo-list li input[type="checkbox"]:checked:before {
+  content: "✔";
+  padding: auto;
+  position: absolute;
+  left: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .todo-list li label {
   width: 80%;
-  margin: .5rem 0;
-  padding: .9rem 0;
+  margin: 0.5rem 0;
+  padding: 0.9rem 0;
   font-size: 1.3rem;
+  font-weight: bold;
 }
 
 .todo-list li > span {
@@ -79,9 +89,15 @@
 }
 
 .todo-list li > div i {
-  padding-right: .5rem;
+  padding-right: 0.5rem;
+  transition: font-size 0.3s ease;
+  cursor: pointer;
 }
 
+.todo-list li > div i:hover {
+  color: var(--color1);
+  font-size: 1.5rem;
+}
 
 .add-todo-container {
   display: flex;
@@ -91,7 +107,7 @@
   padding: 0 2rem;
 }
 
-.add-todo-container input{
+.add-todo-container input {
   width: 85%;
   padding: 0.9rem 0.5rem;
   box-shadow: 2px 2px 4px rgba(61, 61, 61, 0.301);
@@ -101,15 +117,16 @@
   outline: none;
 }
 
-.add-todo-container button{
+.add-todo-container button {
+  padding: 0 1rem;
+  margin-left: 1rem;
   border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(61, 61, 61, 0.301);
   background: var(--color3);
-  width: 10%;
+  /* width: 10%; */
   font-size: 1.5rem;
   font-weight: bold;
   border: none;
   outline: none;
+  cursor: pointer;
 }
-
-

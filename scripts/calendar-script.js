@@ -7,6 +7,7 @@ const date = {
   month: getPresentMonth(),
   year: getPresentYear()
 };
+
 function init() {
   createCalendar(date);
 
@@ -18,8 +19,6 @@ function init() {
     .addEventListener("click", function() {
       decreaseMonth(date);
     });
-
-   
 }
 
 async function createCalendar(date) {
@@ -58,6 +57,10 @@ function renderCalendar() {
       if (selectedCalendarDay) selectedCalendarDay.classList.remove("active");
       selectedCalendarDay = liElement;
       selectedCalendarDay.classList.add("active");
+      
+      const month = +day.datum.split("-")[1];
+      
+      
     });
   }
 
@@ -129,46 +132,39 @@ async function getMonth(date) {
   }
 }
 
-function createCalendarHead(date) {
-  let monthName = date.month;
-  switch (monthName) {
+function getMonthName(month) {
+  switch (month) {
     case 1:
-      monthName = "januari";
-      break;
+     return "januari";
     case 2:
-      monthName = "februari";
-      break;
+     return "februari";
     case 3:
-      monthName = "mars";
-      break;
+    return  "mars";
     case 4:
-      monthName = "april";
-      break;
+     return "april";
     case 5:
-      monthName = "maj";
-      break;
+     return "maj";
     case 6:
-      monthName = "juni";
-      break;
+    return  "juni";
     case 7:
-      monthName = "juli";
-      break;
+    return  "juli";
     case 8:
-      monthName = "augusti";
-      break;
+    return  "augusti";
     case 9:
-      monthName = "september";
-      break;
+    return  "september";
     case 10:
-      monthName = "oktober";
-      break;
+     return "oktober";
     case 11:
-      monthName = "november";
-      break;
+    return  "november";
     case 12:
-      monthName = "december";
-      break;
+     return "december";
   }
+}
+
+function createCalendarHead(date) {
+  const monthName = getMonthName(date.month)
+  console.log(monthName);
+  
   document.querySelector(".calendar-title").innerHTML =
     "Härliga " + monthName + " " + date.year;
 }
