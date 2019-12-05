@@ -27,7 +27,7 @@ body {
   background: #4CB8C4;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3CD3AD, #4CB8C4);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #3CD3AD, #4CB8C4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+  background: #2CCCC3;
 }
 
 h1,
@@ -62,20 +62,44 @@ h4 {
   padding: 0.4rem;
   /* filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671)); */
 }
-.quote:hover {
 
-}
 main {
   display: flex;
   height: 100%;
 }
 
 
+@media (min-width: 1101px) {
+  .todo {
+    width: 40%;
+   }
+ 
+   .calendar {
+     width : 60%;
+ 
+   }
+}
 
 @media (max-width: 1100px) {
   html {
     font-size: 0.8rem;
   }
+
+  .todo {
+    width: 35%;
+   }
+ 
+   .calendar {
+     width : 65%;
+ 
+   }
+}
+
+@media (max-width: 950px) {
+  html {
+    font-size: 0.6rem;
+  }
+  
 }
 
 @media (max-width: 800px) {
@@ -97,7 +121,7 @@ main {
   .todo-list-container {
     margin: 0;
     margin-top: 1rem;
-    padding: 0;
+    /* padding: 0; */
   }
 
   .todo-list-header {
