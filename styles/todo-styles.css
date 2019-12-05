@@ -2,10 +2,13 @@
 .todo {
   background-color: var(--color3);
   width: 30%;
+  height: 97.5%
+  
 }
 .date-time-container {
   border-bottom: 1px solid black;
   padding: 1rem;
+  height: 15%;
 }
 
 .date-time-container h2{
