@@ -62,7 +62,7 @@ main {
   height: 90%;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 900px) {
   .calendar {
     display: none;
   }

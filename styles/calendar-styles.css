@@ -47,6 +47,8 @@
   justify-items: center;
   align-items: center;
   border-radius: 5px;
+  color: var(--color5);
+  font-weight: bold;
 }
 
 .calendar-days {
@@ -69,6 +71,7 @@
 .calendar-days .number-of-todos {
   text-align: left;
   height: 20%;
+  font-weight: bold;
 }
 
 .calendar-days .date {
