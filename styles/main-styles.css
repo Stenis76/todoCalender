@@ -31,19 +31,32 @@ h4 {
 }
 
 .main-header {
-  background-color: var(--color3);
+  background-color: var(--color1);
   color: var(--color1);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 1rem;
   height: 10%;
-  border-bottom: 4px solid var(--color1);
+  border-bottom: 2px solid var(--color1);
 }
 
 .main-header h1 {
   margin: 0;
+  display: fixed;
+  color: var(--color3);
+  font-size:9rem;
 }
+.quote {
+  background-color: var(--color4);
+  border-radius: 50px;
+  text-align: center;
+  padding: 0.4rem;
+  /* filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671)); */
+}
+.quote:hover {
 
+}
 main {
   display: flex;
   height: 90%;
