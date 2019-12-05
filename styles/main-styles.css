@@ -33,7 +33,7 @@ h4 {
 .main-header {
   background-color: var(--color1);
   color: var(--color1);
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
