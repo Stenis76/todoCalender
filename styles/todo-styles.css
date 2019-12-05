@@ -3,6 +3,7 @@
   background-color: var(--color3);
   width: 30%;
   height: 100%;
+  min-width: 400px;
   
 }
 
@@ -21,7 +22,7 @@
 
 .todo-list {
   list-style: none;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .todo-list li {
@@ -131,4 +132,14 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+#submit-button-todos:hover {
+  color: #494949;
+  border-radius: 50px;
+  border-color: #494949;
+  transition: all 0.4s ease 0.3s;
+  }
+#submit-button-todos {
+  transition: 0.3s;
+
 }

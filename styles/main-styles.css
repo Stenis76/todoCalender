@@ -54,19 +54,34 @@ h4 {
   padding: 0.4rem;
   /* filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671)); */
 }
-.quote:hover {
 
-}
 main {
   display: flex;
-  height: 90%;
+  height: 100%;
+  background-color: var(--color3);
+}
+@media (max-width: 900px) {
+  main {
+    display: block;
+    width: 100%;
+  }
+  .todo {
+    height: auto;
+    width: 100%;
+    padding-bottom: 2rem;
+  }
+  .calendar {
+    width: 100%;
+    padding: 1rem;
+  }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 767px) {
   .calendar {
     display: none;
   }
   .todo {
-    width: 100vw;
+    width: 100%;
   }
 }
+
