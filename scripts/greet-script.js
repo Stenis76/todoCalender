@@ -3,15 +3,14 @@ window.addEventListener("load", loadGreet);
 function loadGreet() {
   const dayAndTime = new Date();
   toDayDate(dayAndTime);
-  displayDate(dayAndTime)
-  displayTime()
-  setInterval(displayTime, 1000)
-  
+  displayDate(dayAndTime);
+  // // displayTime()
+  // setInterval(displayTime, 1000)
 }
 
 function toDayDate(dayAndTime) {
   let day = dayAndTime.getDay();
- 
+
   switch (day) {
     case 0:
       day = "söndag";
@@ -35,20 +34,37 @@ function toDayDate(dayAndTime) {
       day = "Lördag";
       break;
   }
-  document.getElementById("day-of-the-week").innerHTML = "Idag är det " + day;
+  document.getElementById("day-of-the-week").innerHTML = day;
 }
 
 function displayDate(dayAndTime) {
-  let date = dayAndTime.toLocaleString()
-  const dateArray = date.split(" ");
-  let dateSplit = dateArray[0]
-  document.querySelector(".todays-date").innerHTML = dateSplit
+  const months = [
+    "Januari",
+    "Februari",
+    "Mars",
+    "April",
+    "Maj",
+    "Juni",
+    "Juli",
+    "Augusti",
+    "September",
+    "Oktober",
+    "November",
+    "December"
+  ];
+  const day = 1 + dayAndTime.getDay();
+  const month = dayAndTime.getMonth();
+  const monthName = months[month];
+  // let date = dayAndTime.toLocaleString()
+  // const dateArray = date.split(" ");
+  // let dateSplit = dateArray[0]
+  document.querySelector(".todays-date").innerHTML = day + " " + monthName;
+  console.log(monthName);
 }
 
-function displayTime() {
-  const dayAndTime = new Date()
-  const time = dayAndTime.toLocaleTimeString()
-  document.querySelector(".time").innerHTML = time
+// function displayTime() {
+//   const dayAndTime = new Date()
+//   const time = dayAndTime.toLocaleTimeString()
+//   document.querySelector(".time").innerHTML = time
 
-}
-
+// }

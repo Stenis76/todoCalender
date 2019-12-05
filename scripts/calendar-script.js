@@ -7,6 +7,7 @@ const date = {
   month: getPresentMonth(),
   year: getPresentYear()
 };
+
 function init() {
   createCalendar(date);
 
@@ -18,8 +19,6 @@ function init() {
     .addEventListener("click", function() {
       decreaseMonth(date);
     });
-
-   
 }
 
 async function createCalendar(date) {
@@ -58,6 +57,10 @@ function renderCalendar() {
       if (selectedCalendarDay) selectedCalendarDay.classList.remove("active");
       selectedCalendarDay = liElement;
       selectedCalendarDay.classList.add("active");
+      
+      const month = +day.datum.split("-")[1];
+      
+      
     });
   }
 
@@ -129,46 +132,39 @@ async function getMonth(date) {
   }
 }
 
-function createCalendarHead(date) {
-  let monthName = date.month;
-  switch (monthName) {
+function getMonthName(month) {
+  switch (month) {
     case 1:
-      monthName = "Januari";
-      break;
+     return "januari";
     case 2:
-      monthName = "Februari";
-      break;
+     return "februari";
     case 3:
-      monthName = "Mars";
-      break;
+    return  "mars";
     case 4:
-      monthName = "April";
-      break;
+     return "april";
     case 5:
-      monthName = "Maj";
-      break;
+     return "maj";
     case 6:
-      monthName = "Juni";
-      break;
+    return  "juni";
     case 7:
-      monthName = "Juli";
-      break;
+    return  "juli";
     case 8:
-      monthName = "Augusti";
-      break;
+    return  "augusti";
     case 9:
-      monthName = "September";
-      break;
+    return  "september";
     case 10:
-      monthName = "Oktober";
-      break;
+     return "oktober";
     case 11:
-      monthName = "November";
-      break;
+    return  "november";
     case 12:
-      monthName = "December";
-      break;
+     return "december";
   }
+}
+
+function createCalendarHead(date) {
+  const monthName = getMonthName(date.month)
+  console.log(monthName);
+  
   document.querySelector(".calendar-title").innerHTML =
     monthName + " " + date.year;
 }
