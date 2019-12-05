@@ -12,8 +12,14 @@
   align-items: center;
   font-size: 2rem;
 }
+
+.calendar-chevron {
+  transition: 0.3s;
+}
 .calendar-chevron:hover {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  transition: 0.3s;
+  
 }
 .calendar-title {
   padding: 0 2rem 0 2rem;

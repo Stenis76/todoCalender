@@ -133,44 +133,44 @@ function createCalendarHead(date) {
   let monthName = date.month;
   switch (monthName) {
     case 1:
-      monthName = "januari";
+      monthName = "Januari";
       break;
     case 2:
-      monthName = "februari";
+      monthName = "Februari";
       break;
     case 3:
-      monthName = "mars";
+      monthName = "Mars";
       break;
     case 4:
-      monthName = "april";
+      monthName = "April";
       break;
     case 5:
-      monthName = "maj";
+      monthName = "Maj";
       break;
     case 6:
-      monthName = "juni";
+      monthName = "Juni";
       break;
     case 7:
-      monthName = "juli";
+      monthName = "Juli";
       break;
     case 8:
-      monthName = "augusti";
+      monthName = "Augusti";
       break;
     case 9:
-      monthName = "september";
+      monthName = "September";
       break;
     case 10:
-      monthName = "oktober";
+      monthName = "Oktober";
       break;
     case 11:
-      monthName = "november";
+      monthName = "November";
       break;
     case 12:
-      monthName = "december";
+      monthName = "December";
       break;
   }
   document.querySelector(".calendar-title").innerHTML =
-    "Härliga " + monthName + " " + date.year;
+    monthName + " " + date.year;
 }
 
 function getPresentMonth() {
