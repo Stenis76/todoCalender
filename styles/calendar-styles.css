@@ -1,38 +1,37 @@
 /* ************ Kalender ********** */
 .calendar {
-  background-color: var(--color3);
+  /* background-color: var(--color3); */
   width: 70%;
-  height: 100%;
+  /* height: 100%; */
   padding: 0 3rem 3rem 2rem;
 }
+
 .calendar-header {
-  height:10%;
+  /* height:10%; */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   font-size: 2rem;
-  padding-right: 15rem;
-  padding-left: 15rem;
+  color: black;
+  padding: 2rem 0;
 }
 
 .calendar-chevron {
   transition: 0.3s;
-  color: var(--color5);
-  
+  cursor: pointer;
 }
 .calendar-chevron:hover {
-  font-size: 2.5rem;
   color: var(--color2);
-  transition: 0.3s;
-  
 }
 .calendar-title {
-  padding: 0 2rem 0 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
 }
 
 .calender-container {
   filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671));
-  height: 90%;
+  /* height: 90%; */
 }
 
 .calendar-grid {
@@ -43,10 +42,11 @@
 }
 .calendar-weekdays {
   background-color: var(--color2);
-  height: 8%;
+  /* height: 8%; */
+  padding: 1.5rem 0;
   justify-items: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   color: var(--color5);
   font-family: "Heebo", sans-serif;
   text-transform: uppercase;
@@ -57,12 +57,16 @@
   background-color: var(--color5);
   height: 92%;
   border-top: 1px solid #dadada;
+  border-radius: 0 0 5px 5px;
+}
+
+.calendar-days li:hover {
+  background-color: var(--color4);
 }
 
 .calendar-days li {
-  height: 100%;
-  min-height: 105px;
-  padding: 0.5rem;
+  min-height: 7rem;
+  padding: 0.5rem;  
   padding-bottom: 0;
   border-right: 1px solid #dadada;
   border-bottom: 1px solid #dadada;
@@ -70,6 +74,11 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  transition: background-color ease .3s;
+}
+
+.calendar-days li:last-child {
+  border-radius: 0 0 5px 0;
 }
 
 .calendar-days .number-of-todos {
@@ -83,6 +92,7 @@
 .calendar-days .date {
   font-size: 2.3rem;
   font-weight: bold;
+  padding-top: 1rem;
   height: 55%;
   display: flex;
   align-items: center;
@@ -103,10 +113,7 @@
   border-bottom: none;
 }
 
-.calendar-days li:hover {
-  background-color: var(--color4);
-  transition: background-color .3s;
-}
+
 
 .day-fill {
   background-color: rgb(241, 240, 240)
