@@ -166,7 +166,7 @@ function createCalendarHead(date) {
   console.log(monthName);
   
   document.querySelector(".calendar-title").innerHTML =
-    "Härliga " + monthName + " " + date.year;
+    monthName + " " + date.year;
 }
 
 function getPresentMonth() {
