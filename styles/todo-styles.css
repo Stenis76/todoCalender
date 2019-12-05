@@ -3,6 +3,7 @@
   background-color: var(--color3);
   width: 30%;
   height: 100%;
+  min-width: 400px;
   
 }
 
@@ -21,7 +22,7 @@
 
 .todo-list {
   list-style: none;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .todo-list li {

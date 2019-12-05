@@ -59,14 +59,30 @@ h4 {
 }
 main {
   display: flex;
-  height: 90%;
+  height: 100%;
+}
+@media (max-width: 900px) {
+  main {
+    display: block;
+    width: 100%;
+  }
+  .todo {
+    height: auto;
+    width: 100%;
+    padding-bottom: 2rem;
+  }
+  .calendar {
+    width: 100%;
+    padding: 1rem;
+  }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 767px) {
   .calendar {
     display: none;
   }
   .todo {
-    width: 100vw;
+    width: 100%;
   }
 }
+
