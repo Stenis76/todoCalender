@@ -10,11 +10,14 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
-    <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|Quando|Scope+One&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Heebo:400,700|Quando|Scope+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/todo-styles.css" />
     <link rel="stylesheet" href="./styles/calendar-styles.css" />
     <link rel="stylesheet" href="./styles/modal-styles.css" />
-    <link rel="stylesheet" href="./styles/greeting-styles.css">
+    <link rel="stylesheet" href="./styles/greeting-styles.css" />
     <link rel="stylesheet" href="./styles/main-styles.css" />
 
     <script defer src="./scripts/main-script.js"></script>
@@ -56,20 +59,26 @@
       </section>
       <section class="calendar">
         <header class="calendar-header">
-          <span class="calendar-chevron" id="previous-month"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+          <span class="calendar-chevron" id="previous-month"
+            ><i class="fa fa-chevron-left" aria-hidden="true"></i
+          ></span>
           <div class="calendar-title"></div>
-          <span class="calendar-chevron" id="next-month"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+          <span class="calendar-chevron" id="next-month"
+            ><i class="fa fa-chevron-right" aria-hidden="true"></i
+          ></span>
         </header>
-        <ul class="calendar-weekdays calendar-grid">
-          <li>Måndag</li>
-          <li>Tisdag</li>
-          <li>Onsdag</li>
-          <li>Torsdag</li>
-          <li>Fredag</li>
-          <li>Lördag</li>
-          <li>Söndag</li>
-        </ul>
-        <ul class="calendar-days calendar-grid"></ul>
+        <div class="calender-container">
+          <ul class="calendar-weekdays calendar-grid">
+            <li>Måndag</li>
+            <li>Tisdag</li>
+            <li>Onsdag</li>
+            <li>Torsdag</li>
+            <li>Fredag</li>
+            <li>Lördag</li>
+            <li>Söndag</li>
+          </ul>
+          <ul class="calendar-days calendar-grid"></ul>
+        </div>
       </section>
 
       <!-- The Modal -->

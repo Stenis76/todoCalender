@@ -2,8 +2,8 @@
 .calendar {
   background-color: var(--color3);
   width: 70%;
-  height: 90%;
-  
+  height: 100%;
+  padding: 0 4rem 4rem 2rem;
 }
 .calendar-header {
   height:10%;
@@ -24,16 +24,23 @@
 .calendar-title {
   padding: 0 2rem 0 2rem;
 }
+
+.calender-container {
+  filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671));
+  height: 90%;
+}
+
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  list-style: none;  
+  list-style: none; 
 }
 .calendar-weekdays {
   background-color: var(--color2);
   height: 10%;
   justify-items: center;
   align-items: center;
+  border-radius: 5px;
 }
 
 .calendar-days {
