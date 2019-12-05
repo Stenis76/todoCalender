@@ -58,6 +58,7 @@ h4 {
 main {
   display: flex;
   height: 100%;
+  background-color: var(--color3);
 }
 @media (max-width: 900px) {
   main {
