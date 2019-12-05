@@ -133,3 +133,13 @@
   outline: none;
   cursor: pointer;
 }
+#submit-button-todos:hover {
+  color: #494949;
+  border-radius: 50px;
+  border-color: #494949;
+  transition: all 0.4s ease 0.3s;
+  }
+#submit-button-todos {
+  transition: 0.3s;
+
+}
