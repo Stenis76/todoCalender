@@ -2,8 +2,8 @@
 .calendar {
   background-color: var(--color3);
   width: 70%;
-  height: 90%;
-  
+  height: 100%;
+  padding: 0 3rem 3rem 2rem;
 }
 .calendar-header {
   height:10%;
@@ -29,32 +29,78 @@
 .calendar-title {
   padding: 0 2rem 0 2rem;
 }
+
+.calender-container {
+  filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671));
+  height: 90%;
+}
+
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  list-style: none;  
+  grid-auto-rows: 1fr;
+  list-style: none; 
 }
 .calendar-weekdays {
   background-color: var(--color2);
-  height: 10%;
+  height: 8%;
   justify-items: center;
   align-items: center;
+  border-radius: 5px;
+  color: var(--color5);
+  font-family: "Heebo", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
 }
 
 .calendar-days {
   background-color: var(--color5);
-  height: 90%;
-  border-left: 2px solid var(--color1);
-  border-top: 2px solid var(--color1);
+  height: 92%;
+  border-top: 1px solid #dadada;
 }
 
 .calendar-days li {
+  height: 100%;
+  min-height: 105px;
   padding: 0.5rem;
-  border-right: 2px solid var(--color1);
-  border-bottom: 2px solid var(--color1);
+  padding-bottom: 0;
+  border-right: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
+}
+
+.calendar-days .number-of-todos {
+  text-align: left;
+  height: 15%;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: black;
+}
+
+.calendar-days .date {
+  font-size: 2.3rem;
+  font-weight: bold;
+  height: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-days .holiday {
+  height: 30%;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.calendar-days li:nth-child(7n) {
+  border-right: none;
+}
+
+.calendar-days li:nth-last-of-type(-n+7) {
+  border-bottom: none;
 }
 
 .calendar-days li:hover {
@@ -63,7 +109,7 @@
 }
 
 .day-fill {
-  background-color: var(--color2);
+  background-color: rgb(241, 240, 240)
 }
 
 .active {
