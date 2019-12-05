@@ -84,18 +84,24 @@ function createListElement(day) {
     const dateArray = dateString.split("-");
     const date = dateArray[2];
     const dateNumber = Number(date);
-
-    const dateDiv = document.createElement("div");
-    dateDiv.innerText = dateNumber;
-    liElement.appendChild(dateDiv);
+    
+    const numberOfTodosElement = document.createElement("div");
+    numberOfTodosElement.classList.add("number-of-todos");
+    liElement.appendChild(numberOfTodosElement);
 
     if (todoLists[day.datum] && todoLists[day.datum].length > 0) {
       const numberOfTodos = todoLists[day.datum].length;
-      const numberOfTodosElement = document.createElement("div");
-      numberOfTodosElement.classList.add("number-of-todos");
       numberOfTodosElement.innerText = "Todos " + numberOfTodos;
-      liElement.appendChild(numberOfTodosElement);
     }
+
+    const dateDiv = document.createElement("div");
+    dateDiv.classList.add("date");
+    dateDiv.innerText = dateNumber;
+    liElement.appendChild(dateDiv);
+
+    const helgdagDiv = document.createElement("div");
+    helgdagDiv.classList.add("holiday")
+    liElement.appendChild(helgdagDiv);
 
     if (day["röd dag"] === "Ja") {
       liElement.style.color = "red";
@@ -103,13 +109,10 @@ function createListElement(day) {
 
       if (day.helgdag) {
         const helgdag = day.helgdag;
-        const helgdagDiv = document.createElement("div");
         helgdagDiv.innerText = helgdag;
-        liElement.appendChild(helgdagDiv);
       }
     } else if (day.helgdagsafton || day.helgdag) {
       const helgdag = day.helgdagsafton || day.helgdag;
-      const helgdagDiv = document.createElement("div");
       helgdagDiv.innerText = helgdag;
       liElement.appendChild(helgdagDiv);
     }

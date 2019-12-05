@@ -33,6 +33,7 @@
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
   list-style: none; 
 }
 .calendar-weekdays {
@@ -46,17 +47,41 @@
 .calendar-days {
   background-color: var(--color5);
   height: 90%;
-  border-left: 2px solid var(--color1);
-  border-top: 2px solid var(--color1);
+  border-top: 1px solid #dadada;
 }
 
 .calendar-days li {
+  height: 100%;
   padding: 0.5rem;
-  border-right: 2px solid var(--color1);
-  border-bottom: 2px solid var(--color1);
+  border-right: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
+}
+
+.calendar-days .number-of-todos {
+  text-align: left;
+  height: 20%;
+}
+
+.calendar-days .date {
+  font-size: 2.5rem;
+  font-weight: bold;
+  height: 60%;
+}
+
+.calendar-days .holiday {
+  height: 20%;
+}
+
+.calendar-days li:nth-child(7n) {
+  border-right: none;
+}
+
+.calendar-days li:nth-last-of-type(-n+7) {
+  border-bottom: none;
 }
 
 .calendar-days li:hover {
@@ -65,7 +90,7 @@
 }
 
 .day-fill {
-  background-color: var(--color2);
+  background-color: rgb(241, 240, 240)
 }
 
 .active {
