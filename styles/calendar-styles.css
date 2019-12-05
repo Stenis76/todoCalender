@@ -8,13 +8,16 @@
 .calendar-header {
   height:10%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 2rem;
+  padding-right: 15rem;
+  padding-left: 15rem;
 }
 
 .calendar-chevron {
   transition: 0.3s;
+  
 }
 .calendar-chevron:hover {
   font-size: 2.5rem;
