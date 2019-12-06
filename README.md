@@ -4,6 +4,14 @@ Lab 3
 Länk till githubpages https://stenis76.github.io/todoCalender/
 lönk till github https://github.com/Stenis76/todoCalender
 
+Avgränsing:
+Vi har valt att ta bort headern av designskäl efter skapandet av den. Dessutom har vi sparat kod som vi inte använder men vill kunna bruka i framtiden.
+ Markus dator har även begett sig till de sälla jaktmarkerna under arbetetesgång så därav flest commits från Dick och Adam.
+
+Cheeers
+ /Dick
+
+
 Schemalagda Todos
 
 I den här uppgiften skall ni bygga ett verktyg där användaren kan skapa och schemalägga todos. Verktyget skall visa en lista med todos och en kalender för översikt. Utöver det tekniska som skall skapas så ämnar den här uppgiften att träna på att arbeta med git och GitHub i projektform.

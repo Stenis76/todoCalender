@@ -4,8 +4,8 @@ function loadGreet() {
   const dayAndTime = new Date();
   toDayDate(dayAndTime);
   displayDate(dayAndTime);
-  // // displayTime()
-  // setInterval(displayTime, 1000)
+  displayTime()
+  setInterval(displayTime, 1000)
 }
 
 function toDayDate(dayAndTime) {
@@ -62,9 +62,9 @@ function displayDate(dayAndTime) {
   console.log(monthName);
 }
 
-// function displayTime() {
-//   const dayAndTime = new Date()
-//   const time = dayAndTime.toLocaleTimeString()
-//   document.querySelector(".time").innerHTML = time
+function displayTime() {
+  const dayAndTime = new Date()
+  const time = dayAndTime.toLocaleTimeString()
+  document.querySelector(".time").innerHTML = time
 
-// }
+}
