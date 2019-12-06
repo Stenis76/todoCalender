@@ -13,7 +13,7 @@
   align-items: center;
   font-size: 2rem;
   color: black;
-  padding: 2rem 0;
+  padding: 2rem 0 2rem 0;
 }
 
 .calendar-chevron {
@@ -75,6 +75,7 @@
   justify-content: center;
   text-align: center;
   transition: background-color ease .3s;
+  cursor: pointer;
 }
 
 .calendar-days li:last-child {
@@ -116,10 +117,11 @@
 
 
 .day-fill {
-  background-color: rgb(241, 240, 240)
+  background-color: rgb(241, 240, 240);
+  cursor: default !important;
 }
 
-.active {
-  background-color: var(--color3);
+.selected {
+  background-color: var(--color3) !important;
 }
 

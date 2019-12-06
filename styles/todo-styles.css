@@ -3,13 +3,29 @@
   /* background-color: var(--color3); */
   width: 30%;
   height: 100%;
+  padding-bottom: 2rem;
   /* min-width: 350px; */
+}
+
+.todo-header {
+  background-color: #181818;
+  color: var(--color5); 
+  padding: 1.5rem 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.todo-list-header {
+  font-family: "Heebo", sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: 0.05rem;
 }
 
 .todo-list-container {
   border-radius: 5px;
   margin: 0 1.5rem;
-  padding: 1rem;
+  padding-bottom: 1rem;
   font-size: 1.2rem;
   background-color: var(--color5);
   filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671));
@@ -21,7 +37,7 @@
 
 .todo-list {
   list-style: none;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 .todo-list li {
@@ -99,6 +115,10 @@
 .todo-list li > div i:hover {
   color: var(--color1);
   font-size: 1.5rem;
+}
+
+.todo-list li > div > span:nth-child(2) i {
+  color: firebrick;
 }
 
 .add-todo-container {
