@@ -24,6 +24,18 @@ function init() {
 async function createCalendar(date) {
   createCalendarHead(date);
   daysArray = await getMonth(date);
+  
+
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  
+  // check if we are viewing this month
+  if (currentMonth === date.month) {
+    const currentDay = currentDate.getDate();
+    // .. then mark todays day so we can add a class to it during render
+    daysArray[currentDay - 1].currentDay = true;
+  }
+  
   renderCalendar(daysArray);
 }
 function renderCalendar() {
@@ -45,18 +57,26 @@ function renderCalendar() {
     const liElement = createListElement(day);
     liElement.dataset.index = i;
 
-    if (selectedCalendarDay && selectedCalendarDay.dataset.index == i) {
+    // if the day has todays date
+    if (day.currentDay) {
+      // .. default it to be selected
       selectedCalendarDay = liElement;
-      selectedCalendarDay.classList.add("active");
+    }
+
+    // if there is a selected day & that day's index match the index we're on
+    if (selectedCalendarDay && selectedCalendarDay.dataset.index == i) {
+      // .. set it to be the selected day
+      selectedCalendarDay = liElement;
+      selectedCalendarDay.classList.add("selected");
     }
 
     calenderDaysElement.appendChild(liElement);
 
     liElement.addEventListener("click", (e) => {
       handleDayClick(day.datum, liElement);
-      if (selectedCalendarDay) selectedCalendarDay.classList.remove("active");
+      if (selectedCalendarDay) selectedCalendarDay.classList.remove("selected");
       selectedCalendarDay = liElement;
-      selectedCalendarDay.classList.add("active");
+      selectedCalendarDay.classList.add("selected");
       
       const month = +day.datum.split("-")[1];
       
