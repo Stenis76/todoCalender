@@ -5,25 +5,18 @@
   --color4: rgba(44, 204, 196, 0.15);
   --color5: rgb(250, 250, 250);
 }
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-/* html {
-  height: 100%;
-} */
-
 body {
   margin: 0;
   font-family: Helvetica, arial;
   height: 100%;
-  /* font-family: "Quando", serif; */
   font-family: "Scope One", serif;
-  /* background: #2193b0;  
-  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  
-  background: linear-gradient(to right, #6dd5ed, #2193b0);  */
   background: #4CB8C4;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #3CD3AD, #4CB8C4);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #3CD3AD, #4CB8C4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -35,33 +28,8 @@ h2,
 h3,
 h4 {
   font-family: "Scope One", serif;
-  /* font-family: "Heebo", sans-serif; */
 }
 
-.main-header {
-  background-color: var(--color1);
-  color: var(--color1);
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  height: 10%;
-  border-bottom: 2px solid var(--color1);
-}
-
-.main-header h1 {
-  margin: 0;
-  display: fixed;
-  color: var(--color3);
-  font-size:9rem;
-}
-.quote {
-  background-color: var(--color4);
-  border-radius: 50px;
-  text-align: center;
-  padding: 0.4rem;
-  /* filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671)); */
-}
 
 main {
   padding-top: 1rem;
@@ -122,11 +90,6 @@ main {
   .todo-list-container {
     margin: 0;
     margin-top: 1rem;
-    /* padding: 0; */
-  }
-
-  .todo-list-header {
-    /* padding-top: 2.3rem; */
   }
 
 }

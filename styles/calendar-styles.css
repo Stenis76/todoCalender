@@ -1,13 +1,10 @@
 /* ************ Kalender ********** */
 .calendar {
-  /* background-color: var(--color3); */
   width: 70%;
-  /* height: 100%; */
   padding: 0 3rem 3rem 2rem;
 }
 
 .calendar-header {
-  /* height:10%; */
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -31,7 +28,6 @@
 
 .calender-container {
   filter: drop-shadow(0.3rem 0.8rem 0.75rem rgba(70, 69, 70, 0.671));
-  /* height: 90%; */
 }
 
 .calendar-grid {
@@ -42,7 +38,6 @@
 }
 .calendar-weekdays {
   background-color: var(--color2);
-  /* height: 8%; */
   padding: 1.5rem 0;
   justify-items: center;
   align-items: center;
@@ -113,8 +108,6 @@
 .calendar-days li:nth-last-of-type(-n+7) {
   border-bottom: none;
 }
-
-
 
 .day-fill {
   background-color: rgb(241, 240, 240);

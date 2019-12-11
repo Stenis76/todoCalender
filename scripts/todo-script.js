@@ -3,7 +3,7 @@ const todoListElement = document.querySelector(".todo-list");
 // object that stores all the todo lists for different dates.
 // To retrieve a list for a particular date use a key with the 
 // format "yyyy-mm-dd"
-let todoLists = JSON.parse(localStorage.getItem("todoLists")) || {};
+let todoLists;
 
 // keep track of the selected date, default is the current date
 let selectedDate;
@@ -20,15 +20,11 @@ let selectedDate;
   // listen to click on the todo list element
   todoListElement.addEventListener("click", toggleDone);
 
-  // find the current date
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate() + 1;
+  todoLists = JSON.parse(localStorage.getItem("todoLists")) || {};
 
-  // .. and convert it to a date string of the format "yyyy-mm-dd"
-  selectedDate = year + "-" + month + "-" + day;
-
+  // get the selected date  from local storage or set the current date to the selected date
+  selectedDate = localStorage.getItem("selectedDate") || getCurrentDateString();
+ 
   // set the todo header to the current day
   setTodoHeaderDate(selectedDate);
 
@@ -36,13 +32,22 @@ let selectedDate;
   if (todoLists[selectedDate]) renderTodos(todoLists[selectedDate]);
 })();
 
+function getCurrentDateString() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+
+  return year + "-" + month + "-" + day;
+}
+
 function setTodoHeaderDate(dateString) {
   // get the todo header element
   const todoHeader = document.querySelector(".todo-list-header");
 
   // split the dateString into and array
   const dateArray = dateString.split("-");
-
+  
   // get the day from the array;
   const day = Number(dateArray[2]);
 
@@ -272,7 +277,7 @@ function createTodoElement(todo, index) {
 function handleDayClick(date) {
   // update the selected date
   selectedDate = date;
-
+  localStorage.setItem("selectedDate", selectedDate);
   // if there is no list for the selected date create and empty array
   // in the state for the selected date
   if (!todoLists[selectedDate]) {
@@ -285,3 +290,5 @@ function handleDayClick(date) {
   // render todos for the selected date
   renderTodos();
 }
+
+
