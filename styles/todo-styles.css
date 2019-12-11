@@ -1,10 +1,8 @@
 /* ************ ToDo ********** */
 .todo {
-  /* background-color: var(--color3); */
   width: 30%;
   height: 100%;
   padding-bottom: 2rem;
-  /* min-width: 350px; */
 }
 
 .todo-header {
@@ -45,9 +43,7 @@
   height: 100%;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   border-bottom: 1px solid #dadada;
-  /* margin: 0.9rem 0; */
 }
 
 .todo-list li:last-child {
@@ -145,19 +141,20 @@
   border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(61, 61, 61, 0.301);
   background: darkgrey;
-  /* width: 10%; */
   font-size: 1.5rem;
   font-weight: bold;
   border: none;
   outline: none;
   cursor: pointer;
 }
+
 #submit-button-todos:hover {
   color: #494949;
   border-radius: 50px;
   border-color: #494949;
   transition: all 0.4s ease 0.3s;
   }
+  
 #submit-button-todos {
   transition: 0.3s;
 

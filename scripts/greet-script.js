@@ -38,33 +38,15 @@ function toDayDate(dayAndTime) {
 }
 
 function displayDate(dayAndTime) {
-  const months = [
-    "Januari",
-    "Februari",
-    "Mars",
-    "April",
-    "Maj",
-    "Juni",
-    "Juli",
-    "Augusti",
-    "September",
-    "Oktober",
-    "November",
-    "December"
-  ];
   const day = 1 + dayAndTime.getDay();
   const month = dayAndTime.getMonth();
-  const monthName = months[month];
-  // let date = dayAndTime.toLocaleString()
-  // const dateArray = date.split(" ");
-  // let dateSplit = dateArray[0]
+  const monthName = getMonthName(month);
+ 
   document.querySelector(".todays-date").innerHTML = day + " " + monthName;
-  console.log(monthName);
 }
 
 function displayTime() {
   const dayAndTime = new Date()
   const time = dayAndTime.toLocaleTimeString()
   document.querySelector(".time").innerHTML = time
-
 }
