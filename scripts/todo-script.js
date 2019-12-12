@@ -8,6 +8,7 @@ let todoLists;
 // keep track of the selected date, default is the current date
 let selectedDate;
 
+let renderAll;
 
 // IIFE ("iffy")
 // Initialize the todo script 
@@ -26,10 +27,29 @@ let selectedDate;
   selectedDate = localStorage.getItem("selectedDate") || getCurrentDateString();
  
   // set the todo header to the current day
-  setTodoHeaderDate(selectedDate);
+  
+  if (window.innerWidth <= 550) {
+    renderAll = true;
+    selectedDate = getCurrentDateString();
+  }
 
+  window.addEventListener("resize", e => {
+    if (e.target.innerWidth <= 550) {
+      renderAll = true;
+      selectedDate = getCurrentDateString();
+      renderTodos();
+      setTodoHeaderDate(selectedDate);
+    } else {
+      renderAll = false;
+      renderTodos();
+      setTodoHeaderDate(selectedDate);
+    }
+  })
+
+  setTodoHeaderDate(selectedDate);
   // if there is a list at the selectedDate key render that list
-  if (todoLists[selectedDate]) renderTodos(todoLists[selectedDate]);
+  // if (todoLists[selectedDate]) renderTodos(todoLists[selectedDate]);
+  renderTodos();
 })();
 
 function getCurrentDateString() {
@@ -44,6 +64,11 @@ function getCurrentDateString() {
 function setTodoHeaderDate(dateString) {
   // get the todo header element
   const todoHeader = document.querySelector(".todo-list-header");
+
+  if (renderAll) {
+    todoHeader.innerText = "Att göra";
+    return;
+  }
 
   // split the dateString into and array
   const dateArray = dateString.split("-");
@@ -103,6 +128,14 @@ function addTodo(todoToAdd) {
 }
 
 function removeTodo(todoToRemove) {
+  if(renderAll) {
+    for(let key in todoLists) {
+      todoLists[key] = todoLists[key].filter(todo => todo.id !== todoToRemove.id)
+    }
+    renderTodos();
+    renderCalendar();
+    return;
+  }
   // filter out the todoToRemove from the array and update with new array
   todoLists[selectedDate] = todoLists[selectedDate].filter(
     todo => todo.id !== todoToRemove.id
@@ -189,15 +222,39 @@ function renderTodos() {
   // reset the ul container element
   todoListElement.innerHTML = "";
 
+  if (renderAll) {
+    renderAllTodos();
+    return;
+  }
+  
   // get the todos for the selected date
   todosToRender = todoLists[selectedDate];
-
+  
   // create a todo html element for every todo in the array
   todosToRender.forEach((todo, index) => {
     const todoElement = createTodoElement(todo, index);
     // .. and append them to the ul element
     todoListElement.appendChild(todoElement);
   });
+}
+
+function renderAllTodos() {
+ 
+  let index = 0;
+  Object.entries(todoLists).forEach(([key, todoList]) => {
+    if (todoList.length) {
+      const dayHeader = document.createElement("li");
+      todoListElement.appendChild(dayHeader);
+      dayHeader.innerHTML = `<h3>${key}</h3>`
+      dayHeader.classList.add("todo-day-header")
+
+    }
+    todoList.forEach(todo => {
+      const todoElement = createTodoElement(todo, index);
+      todoListElement.appendChild(todoElement);
+      index++;
+    })
+  })
 }
 
 function createTodoElement(todo, index) {
@@ -275,6 +332,14 @@ function createTodoElement(todo, index) {
 }
 
 function handleDayClick(date) {
+  if (!date) {
+    renderAll = true;
+    setTodoHeaderDate(date);
+    renderTodos();
+    return;
+  }
+  
+  renderAll = false;
   // update the selected date
   selectedDate = date;
   localStorage.setItem("selectedDate", selectedDate);

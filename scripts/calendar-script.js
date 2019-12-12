@@ -75,8 +75,7 @@ function renderCalendar() {
         if (liElement.classList.contains("selected")) {
           handleDayClick(day.datum, liElement);
         } else {
-          const currentDateString = getCurrentDateString();
-          handleDayClick(currentDateString, liElement);
+          handleDayClick("", liElement);
         }
       } else {
         selectedCalendarDay
