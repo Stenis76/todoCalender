@@ -105,6 +105,10 @@ function handleSubmit(e) {
 function addTodo(todoToAdd) {
   // if there is no list for the selected date create and empty array
   // in the state for the selected date
+  if (!selectedDate) {
+    selectedDate = getCurrentDateString();
+  }
+  
   if (!todoLists[selectedDate]) {
     todoLists[selectedDate] = [];
   }
@@ -115,7 +119,8 @@ function addTodo(todoToAdd) {
     todoText: todoToAdd,
     done: false
   };
-
+  console.log(selectedDate);
+  
   // add new todo to the state
   todoLists[selectedDate].push(todo);
 
@@ -334,6 +339,7 @@ function createTodoElement(todo, index) {
 function handleDayClick(date) {
   if (!date) {
     renderAll = true;
+    selectedDate = date;
     setTodoHeaderDate(date);
     renderTodos();
     return;
