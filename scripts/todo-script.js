@@ -136,9 +136,11 @@ function removeTodo(todoToRemove) {
   if(renderAll) {
     for(let key in todoLists) {
       todoLists[key] = todoLists[key].filter(todo => todo.id !== todoToRemove.id)
+      todoLists[key].length < 1 ? delete todoLists[key] : null;
     }
     renderTodos();
     renderCalendar();
+    localStorage.setItem("todoLists", JSON.stringify(todoLists));
     return;
   }
   // filter out the todoToRemove from the array and update with new array
