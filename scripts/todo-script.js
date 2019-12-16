@@ -1,7 +1,7 @@
 const todoListElement = document.querySelector(".todo-list");
 
 // object that stores all the todo lists for different dates.
-// To retrieve a list for a particular date use a key with the 
+// To retrieve a list for a particular date use a key with the
 // format "yyyy-mm-dd"
 let todoLists;
 
@@ -11,13 +11,13 @@ let selectedDate;
 let renderAll;
 
 // IIFE ("iffy")
-// Initialize the todo script 
+// Initialize the todo script
 (function() {
   // get the add todo container
   const todoFormElement = document.querySelector(".add-todo-container");
   // .. and listen to submits
   todoFormElement.addEventListener("submit", handleSubmit);
-  
+
   // listen to click on the todo list element
   todoListElement.addEventListener("click", toggleDone);
 
@@ -25,9 +25,9 @@ let renderAll;
 
   // get the selected date  from local storage or set the current date to the selected date
   selectedDate = localStorage.getItem("selectedDate") || getCurrentDateString();
- 
+
   // set the todo header to the current day
-  
+
   if (window.innerWidth <= 550) {
     renderAll = true;
     selectedDate = getCurrentDateString();
@@ -44,7 +44,7 @@ let renderAll;
       renderTodos();
       setTodoHeaderDate(selectedDate);
     }
-  })
+  });
 
   setTodoHeaderDate(selectedDate);
   // if there is a list at the selectedDate key render that list
@@ -72,7 +72,7 @@ function setTodoHeaderDate(dateString) {
 
   // split the dateString into and array
   const dateArray = dateString.split("-");
-  
+
   // get the day from the array;
   const day = Number(dateArray[2]);
 
@@ -105,6 +105,10 @@ function handleSubmit(e) {
 function addTodo(todoToAdd) {
   // if there is no list for the selected date create and empty array
   // in the state for the selected date
+  if (!selectedDate) {
+    selectedDate = getCurrentDateString();
+  }
+
   if (!todoLists[selectedDate]) {
     todoLists[selectedDate] = [];
   }
@@ -115,6 +119,7 @@ function addTodo(todoToAdd) {
     todoText: todoToAdd,
     done: false
   };
+  console.log(selectedDate);
 
   // add new todo to the state
   todoLists[selectedDate].push(todo);
@@ -128,12 +133,16 @@ function addTodo(todoToAdd) {
 }
 
 function removeTodo(todoToRemove) {
-  if(renderAll) {
-    for(let key in todoLists) {
-      todoLists[key] = todoLists[key].filter(todo => todo.id !== todoToRemove.id)
+  if (renderAll) {
+    for (let key in todoLists) {
+      todoLists[key] = todoLists[key].filter(
+        todo => todo.id !== todoToRemove.id
+      );
+      todoLists[key].length < 1 ? delete todoLists[key] : null;
     }
     renderTodos();
     renderCalendar();
+    localStorage.setItem("todoLists", JSON.stringify(todoLists));
     return;
   }
   // filter out the todoToRemove from the array and update with new array
@@ -226,10 +235,10 @@ function renderTodos() {
     renderAllTodos();
     return;
   }
-  
+
   // get the todos for the selected date
   todosToRender = todoLists[selectedDate];
-  
+
   // create a todo html element for every todo in the array
   todosToRender.forEach((todo, index) => {
     const todoElement = createTodoElement(todo, index);
@@ -239,35 +248,45 @@ function renderTodos() {
 }
 
 function renderAllTodos() {
- 
+  // sort the todolists by their key, i.e. the date string
+  const orderedTodoLists = {};
+  Object.keys(todoLists)
+    .sort()
+    .forEach(key => {
+      orderedTodoLists[key] = todoLists[key];
+    });
+  todoLists = orderedTodoLists;
+
+  // iterate through the todolist object and show all todos
   let index = 0;
   Object.entries(todoLists).forEach(([key, todoList]) => {
+    // if the list is not empty create a date header
     if (todoList.length) {
       const dayHeader = document.createElement("li");
       todoListElement.appendChild(dayHeader);
-      dayHeader.innerHTML = `<h3>${key}</h3>`
-      dayHeader.classList.add("todo-day-header")
-
+      dayHeader.innerHTML = `<h3>${key}</h3>`;
+      dayHeader.classList.add("todo-day-header");
     }
+    // show all todos for this key
     todoList.forEach(todo => {
       const todoElement = createTodoElement(todo, index);
       todoListElement.appendChild(todoElement);
       index++;
-    })
-  })
+    });
+  });
 }
 
 function createTodoElement(todo, index) {
   // create a li element
   const todoElement = document.createElement("li");
-  
+
   // create a input checkbox
   const inputElement = document.createElement("input");
   inputElement.type = "checkbox";
 
   // set the checkbox to be checked if the todos done property is true
   inputElement.checked = todo.done ? "checked" : "";
-  
+
   // give the input element an index so we can keep track of the checkboxes
   inputElement.dataset.index = index;
 
@@ -334,11 +353,12 @@ function createTodoElement(todo, index) {
 function handleDayClick(date) {
   if (!date) {
     renderAll = true;
+    selectedDate = date;
     setTodoHeaderDate(date);
     renderTodos();
     return;
   }
-  
+
   renderAll = false;
   // update the selected date
   selectedDate = date;
@@ -355,5 +375,3 @@ function handleDayClick(date) {
   // render todos for the selected date
   renderTodos();
 }
-
-
